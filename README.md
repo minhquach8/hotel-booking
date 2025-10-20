@@ -1,12 +1,24 @@
 # 🏨 Aurora Cove Hotel — Full-Stack (Node.js + MySQL)
 
-A learning project developed by **Minh Hoang Quach**, evolving from a static HTML/CSS site into a modern **full-stack hotel booking system** using **Node.js**, **Express**, and **MySQL**.
+A learning project developed by **Minh Hoang Quach**, evolving from a static HTML/CSS site into a modern **full-stack hotel booking system** using **Node.js**, **Express**, and **MySQL**.  
+Built and deployed with a focus on clarity, modularity, and real-world deployment experience.
+
+---
+
+## 🌐 Live Deployment
+
+| Service | URL |
+|----------|-----|
+| **Frontend (GitHub Pages)** | [https://minhquach8.github.io/hotel-booking/frontend/](https://minhquach8.github.io/hotel-booking/frontend/) |
+| **Backend API (Render)** | [https://hotel-booking-bucm.onrender.com/api/health](https://hotel-booking-bucm.onrender.com/api/health) |
+| **Database (Railway MySQL)** | Private connection (used by backend) |
 
 ---
 
 ## 📁 Project Structure
 
 ```
+
 hotel-booking/
 ├── backend/          # Express server + REST APIs (rooms, booking)
 │   ├── server.js
@@ -19,10 +31,11 @@ hotel-booking/
 │   ├── booking.html
 │   ├── styles.css
 │   ├── booking.js
-│   ├── images/
+│   ├── rooms.js
+│   ├── config.js
+│   └── images/
 
-
-````
+```
 
 ---
 
@@ -30,7 +43,7 @@ hotel-booking/
 
 ### Environment Setup
 
-Create a file named **`.env`** inside `backend/`:
+Create a file named **`.env`** inside `backend/` (for local use):
 
 ```bash
 DB_HOST=localhost
@@ -38,11 +51,13 @@ DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=hotel_booking
 DB_PORT=3306
-````
+NODE_ENV=development
+```
 
 > Replace credentials with your local MySQL configuration.
+> On Render, these values are provided via the Environment Variables panel.
 
-### Installation & Run
+### Installation & Run (Local)
 
 ```bash
 cd 03-node-mysql/hotel-booking/backend
@@ -92,9 +107,9 @@ Content-Type: application/json
 
 ---
 
-### Database Schema
+## 🗄️ Database Schema
 
-#### 🗂️ Table: `rooms`
+### 🗂️ Table: `rooms`
 
 | Field         | Type          | Description             |
 | :------------ | :------------ | :---------------------- |
@@ -107,8 +122,9 @@ Content-Type: application/json
 | `beds`        | VARCHAR(50)   | Bed info                |
 | `occupancy`   | INT           | Default 2               |
 | `image`       | VARCHAR(255)  | Image path              |
+| `created_at`  | TIMESTAMP     | Auto-generated          |
 
-#### 🗂️ Table: `bookings`
+### 🗂️ Table: `bookings`
 
 | Field        | Type         | Description              |
 | :----------- | :----------- | :----------------------- |
@@ -123,44 +139,55 @@ Content-Type: application/json
 
 ---
 
-## 🎨 Frontend
+## 🎨 Frontend (GitHub Pages)
 
-The **frontend** is a modern static site located in `frontend/`.
-It is served automatically by the backend (`express.static()`).
+The **frontend** is a modern static site hosted separately on **GitHub Pages**,
+while the **backend API** is deployed on **Render**.
+During local development, Express can serve the same frontend for convenience.
 
 ### Pages
 
-| File           | Description                                     |
-| :------------- | :---------------------------------------------- |
-| `index.html`   | Landing page with hero section                  |
-| `rooms.html`   | Room listings and rates                         |
-| `booking.html` | Booking form connected to the API               |
-| `styles.css`   | Unified design system                           |
-| `booking.js`   | Handles booking form submission using Fetch API |
+| File           | Description                                             |
+| :------------- | :------------------------------------------------------ |
+| `index.html`   | Landing page with hero section                          |
+| `rooms.html`   | Dynamic room listings and rates                         |
+| `booking.html` | Booking form connected to the API                       |
+| `styles.css`   | Unified design system                                   |
+| `booking.js`   | Handles booking form submission using Fetch API         |
+| `rooms.js`     | Renders room data dynamically from `/api/rooms`         |
+| `config.js`    | Defines the `window.API_BASE` global used for API calls |
 
 ### Booking Flow
 
-1. User fills in form on **`booking.html`**
-2. `booking.js` validates inputs and sends POST request → `/api/booking`
-3. Backend inserts record into MySQL → returns booking ID
-4. User receives confirmation message (Reference ID shown)
+1. User fills in form on **`booking.html`**.
+2. `booking.js` validates inputs and sends a POST request → `/api/booking`.
+3. Backend inserts the record into MySQL → returns a booking ID.
+4. User receives a confirmation message (Reference ID shown).
+
+> The file `frontend/config.js` defines the global `window.API_BASE`,
+> pointing to the deployed Render backend (e.g. `https://hotel-booking-bucm.onrender.com`).
+> All Fetch requests use this base to communicate with the API.
 
 ---
 
 ## 🧠 Key Technologies
 
-* **Node.js** + **Express** (backend server)
-* **MySQL** + **mysql2/promise**
+* **Node.js** + **Express** for backend server
+* **MySQL** (via `mysql2/promise`)
 * **dotenv** for environment configuration
-* **HTML5 / CSS3 / JavaScript (ES6)** frontend
-* **Fetch API** for AJAX form submission
+* **HTML5 / CSS3 / JavaScript (ES6)** for frontend
+* **Fetch API** for AJAX communication
+* **CORS** enabled for GitHub Pages origin
+* **Render** for backend hosting
+* **GitHub Pages** for frontend hosting
+* **Railway** for MySQL database hosting
 
 ---
 
-## 🚀 Run the Full Stack
+## 🚀 Run the Full Stack (Locally)
 
 ```bash
-# 1️⃣ Start backend (serves frontend too)
+# 1️⃣ Start backend (serves frontend locally)
 cd backend
 npm run dev
 
@@ -172,18 +199,30 @@ http://localhost:3000
 
 ## 📋 Roadmap
 
-| Stage | Description                                    | Status |
-| :---- | :--------------------------------------------- | :----: |
-| 1     | Static frontend (HTML + CSS)                   |    ✅   |
-| 2     | Express backend with `/api/health`             |    ✅   |
-| 3     | MySQL connection & `/api/rooms`                |    ✅   |
-| 4     | Booking API `/api/booking`                     |    ✅   |
-| 5     | Frontend form integration (Fetch API)          |    ✅   |
-| 6     | Dynamic room rendering & basic admin dashboard |   🔜   |
+| Stage | Description                             | Status |
+| :---- | :-------------------------------------- | :----: |
+| 1     | Static frontend (HTML + CSS)            |    ✅   |
+| 2     | Express backend with `/api/health`      |    ✅   |
+| 3     | MySQL connection & `/api/rooms`         |    ✅   |
+| 4     | Booking API `/api/booking`              |    ✅   |
+| 5     | Frontend form integration (Fetch API)   |    ✅   |
+| 6     | Dynamic room rendering via `/api/rooms` |    ✅   |
+| 7     | URL pre-selection for booking form      |   🔜   |
+| 8     | Admin dashboard (manage bookings)       |    ⏳   |
+| 9     | Cloud deployment & optimisation         |    ✅   |
+
+---
+
+## 🧾 Notes
+
+* **CORS** on backend explicitly allows origin `https://minhquach8.github.io`.
+* Image paths in the database are stored as relative (`images/room-deluxe.jpg`),
+  resolved by the frontend for GitHub Pages context.
+* All wording and comments follow **British English** style for consistency.
 
 ---
 
 ## 📄 Licence
 
 This project is released under the **MIT Licence**.
-© 2025 Minh Hoang Quach — Designed and built in Aotearoa NZ 🇳🇿
+© 2025 **Minh Hoang Quach** — Designed and built in Aotearoa NZ 🇳🇿

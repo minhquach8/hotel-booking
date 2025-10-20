@@ -4,11 +4,9 @@
     const form = document.querySelector(".booking-form");
     if (!form) return;
 
-    // API base: use global from config.js, fall back to relative for local dev.
     const API_BASE =
         typeof window !== "undefined" && window.API_BASE ? window.API_BASE : "";
 
-    // Create a status area for user feedback
     const status = document.createElement("div");
     status.setAttribute("role", "status");
     status.style.marginTop = "10px";
@@ -26,9 +24,38 @@
     }
 
     function parseDate(value) {
-        // value is yyyy-mm-dd; basic normalisation for comparison
         return value ? new Date(value + "T00:00:00") : null;
     }
+
+    // 1️⃣ Pre-select room from query (?room=slug)
+    const params = new URLSearchParams(window.location.search);
+    const roomSlug = params.get("room");
+    if (roomSlug) {
+        const select = document.getElementById("room");
+        if (select) {
+            const opt = Array.from(select.options).find(
+                (o) => o.value === roomSlug
+            );
+            if (opt) {
+                select.value = roomSlug;
+            }
+        }
+    }
+
+    // 2️⃣ Basic date validation: min today for check-in
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    const checkinInput = document.getElementById("checkin");
+    if (checkinInput) checkinInput.min = todayStr;
+
+    const checkoutInput = document.getElementById("checkout");
+    if (checkoutInput) checkoutInput.min = todayStr;
+
+    /* ------------------------------------------------------------ */
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -47,7 +74,14 @@
 
         const inDate = parseDate(checkin);
         const outDate = parseDate(checkout);
-        if (!inDate || !outDate || !(inDate < outDate)) {
+        const now = new Date(todayStr + "T00:00:00");
+
+        if (inDate < now) {
+            setStatus("Check-in date cannot be in the past.", "error");
+            return;
+        }
+
+        if (!(inDate < outDate)) {
             setStatus("Check-out must be after check-in.", "error");
             return;
         }
