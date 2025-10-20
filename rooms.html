@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Cove Hotel | Rooms & Rates</title>
+  <meta name="description" content="Browse our room types: Deluxe, Executive, and Standard. Thoughtful amenities and comfortable bedding." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" alt="" class="logo" />
+        <span>Aurora Cove Hotel</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="rooms.html" class="active">Rooms</a>
+        <a href="booking.html" class="btn btn--sm">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content">
+    <header class="page-header">
+      <h1>Rooms &amp; Rates</h1>
+      <p>Pick the room that suits your pace — all include premium bedding and an ensuite.</p>
+    </header>
+
+    <section class="rooms-grid" aria-label="Available room types">
+      <article class="room-card">
+        <img src="images/room-deluxe.jpg" alt="Deluxe room with ocean view" />
+        <div class="room-card__body">
+          <h2>Deluxe Room</h2>
+          <p>Spacious room with a king bed, ocean view, and a private balcony.</p>
+          <div class="room-meta">
+            <span class="price">From NZD 220/night</span>
+            <a class="btn btn--ghost" href="booking.html" aria-label="Book Deluxe Room">Book</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="room-card">
+        <img src="images/room-executive.jpg" alt="Executive room with workspace" />
+        <div class="room-card__body">
+          <h2>Executive Room</h2>
+          <p>King bed, workspace, and complimentary coffee — ideal for business stays.</p>
+          <div class="room-meta">
+            <span class="price">From NZD 260/night</span>
+            <a class="btn btn--ghost" href="booking.html" aria-label="Book Executive Room">Book</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="room-card">
+        <img src="images/room-standard.jpg" alt="Standard room with queen bed" />
+        <div class="room-card__body">
+          <h2>Standard Room</h2>
+          <p>Queen bed and a calm interior — simple, comfortable, and well-located.</p>
+          <div class="room-meta">
+            <span class="price">From NZD 170/night</span>
+            <a class="btn btn--ghost" href="booking.html" aria-label="Book Standard Room">Book</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="y"></span> Aurora Cove Hotel · Designed by Minh Hoang Quach</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

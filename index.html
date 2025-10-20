@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Cove Hotel | Beachfront Stays in Auckland</title>
+  <meta name="description" content="Aurora Cove Hotel — contemporary beachfront stays in Auckland. Comfortable rooms, ocean views, and warm Kiwi hospitality." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Aurora Cove Hotel home">
+        <img src="images/logo.svg" alt="" class="logo" />
+        <span>Aurora Cove Hotel</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="index.html" class="active">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="booking.html" class="btn btn--sm">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" role="img" aria-label="Beachfront hotel with ocean view">
+    <div class="container hero__inner">
+      <h1>Experience coastal calm in the heart of Auckland</h1>
+      <p>Contemporary rooms, ocean views, and thoughtful service — your restful break starts here.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="booking.html">Check availability</a>
+        <a class="btn" href="rooms.html">Explore rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <main class="container content">
+    <section class="intro">
+      <h2>Welcome to Aurora Cove</h2>
+      <p>
+        Nestled by the shore, our boutique hotel blends modern design with genuine Kiwi hospitality.
+        Whether it’s a weekend escape or a business trip, we focus on comfort, quiet, and convenience.
+      </p>
+      <ul class="features" aria-label="Key facilities">
+        <li>Free high-speed Wi-Fi</li>
+        <li>On-site café &amp; room service</li>
+        <li>Secure parking</li>
+        <li>24/7 reception</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="y"></span> Aurora Cove Hotel · Auckland, NZ · Designed by Minh Hoang Quach</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sets current year (British English comments)
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

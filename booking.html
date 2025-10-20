@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Cove Hotel | Booking</title>
+  <meta name="description" content="Secure your stay at Aurora Cove Hotel. Simple booking form with preferred dates and room type." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" alt="" class="logo" />
+        <span>Aurora Cove Hotel</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="booking.html" class="active btn btn--sm">Booking</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content">
+    <header class="page-header">
+      <h1>Book your stay</h1>
+      <p>We’ll confirm your reservation by e-mail once submitted.</p>
+    </header>
+
+    <form class="booking-form" action="#" method="post" novalidate>
+      <div class="form-row">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" placeholder="Your full name" required aria-required="true" />
+      </div>
+
+      <div class="form-row">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" placeholder="your.name@example.com" required aria-required="true" />
+      </div>
+
+      <div class="form-row">
+        <label for="room">Room type</label>
+        <select id="room" name="room" required aria-required="true">
+          <option value="deluxe">Deluxe Room</option>
+          <option value="executive">Executive Room</option>
+          <option value="standard">Standard Room</option>
+          <option value="queen">Queen Room</option>
+          <option value="king">King Room</option>
+          <option value="single">Single Room</option>
+          <option value="double">Double Room</option>
+        </select>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="checkin">Check-in</label>
+          <input id="checkin" name="checkin" type="date" required />
+        </div>
+        <div class="form-row">
+          <label for="checkout">Check-out</label>
+          <input id="checkout" name="checkout" type="date" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" rows="4" placeholder="Any special requests?"></textarea>
+      </div>
+
+      <button class="btn btn--primary" type="submit">Submit booking</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="y"></span> Aurora Cove Hotel · Designed by Minh Hoang Quach</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
