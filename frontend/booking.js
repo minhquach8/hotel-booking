@@ -1,8 +1,12 @@
-//Aurora Cove Hotel - booking form handler
+// Aurora Cove Hotel — booking form handler
 
 (function () {
     const form = document.querySelector(".booking-form");
     if (!form) return;
+
+    // API base: use global from config.js, fall back to relative for local dev.
+    const API_BASE =
+        typeof window !== "undefined" && window.API_BASE ? window.API_BASE : "";
 
     // Create a status area for user feedback
     const status = document.createElement("div");
@@ -22,6 +26,7 @@
     }
 
     function parseDate(value) {
+        // value is yyyy-mm-dd; basic normalisation for comparison
         return value ? new Date(value + "T00:00:00") : null;
     }
 
@@ -35,7 +40,6 @@
         const checkout = document.getElementById("checkout")?.value;
         const notes = document.getElementById("notes")?.value.trim();
 
-        // Basic client-side validation
         if (!fullName || !email || !roomSlug || !checkin || !checkout) {
             setStatus("Please fill in all required fields.", "error");
             return;
@@ -43,30 +47,27 @@
 
         const inDate = parseDate(checkin);
         const outDate = parseDate(checkout);
-        if (!inDate || !outDate || inDate >= outDate) {
+        if (!inDate || !outDate || !(inDate < outDate)) {
             setStatus("Check-out must be after check-in.", "error");
             return;
         }
 
-        // Disable submit while sending
         const submitBtn = form.querySelector('button[type="submit"]');
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0.7";
-        setStatus("Submitting your booking...", "info");
+        setStatus("Submitting your booking…", "info");
 
         try {
-            const res = await fetch("/api/booking", {
+            const res = await fetch(`${API_BASE}/api/booking`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     full_name: fullName,
-                    email: email,
+                    email,
                     room_slug: roomSlug,
-                    checkin: checkin,
-                    checkout: checkout,
-                    notes: notes || NULL,
+                    checkin,
+                    checkout,
+                    notes: notes || null,
                 }),
             });
 
@@ -78,14 +79,14 @@
             }
 
             const data = await res.json();
-            setStatus(`Booking confirmed. Reference ID: ${data.booking_id}`, "success");
-            console.log(data);
-
+            setStatus(
+                `Booking confirmed. Reference ID: ${data.booking_id}`,
+                "success"
+            );
             form.reset();
         } catch (error) {
             setStatus(
-                error.message ||
-                    "Something went wrong. Please try again later.",
+                error.message || "Something went wrong. Please try again.",
                 "error"
             );
         } finally {
