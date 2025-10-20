@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "name": "Deluxe Room",
+        "slug": "deluxe",
+        "description": "Spacious king-bed room with ocean view and private balcony.",
+        "amenities": [
+            "Ensuite",
+            "Sea view",
+            "Balcony",
+            "High-speed Wi-Fi",
+            "Coffee & tea"
+        ],
+        "price_nzd": 220,
+        "beds": "1× King",
+        "occupancy": 2,
+        "image": "/images/room-deluxe.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Executive Room",
+        "slug": "executive",
+        "description": "King bed, generous workspace, and complimentary coffee — ideal for business stays.",
+        "amenities": ["Ensuite", "Workspace", "High-speed Wi-Fi", "Smart TV"],
+        "price_nzd": 260,
+        "beds": "1× King",
+        "occupancy": 2,
+        "image": "/images/room-executive.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Standard Room",
+        "slug": "standard",
+        "description": "Calm, comfortable room with a queen bed and soft lighting.",
+        "amenities": ["Ensuite", "High-speed Wi-Fi", "Air conditioning"],
+        "price_nzd": 170,
+        "beds": "1× Queen",
+        "occupancy": 2,
+        "image": "/images/room-standard.jpg"
+    }
+]
