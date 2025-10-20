@@ -14,12 +14,13 @@ hotel-booking/
 │   ├── .env
 │   └── data/         # (optional) mock data
 └── frontend/         # Static UI: HTML, CSS, JS
-├── index.html
-├── rooms.html
-├── booking.html
-├── styles.css
-├── booking.js
-└── images/
+│   ├── index.html
+│   ├── rooms.html
+│   ├── booking.html
+│   ├── styles.css
+│   ├── booking.js
+│   ├── images/
+
 
 ````
 

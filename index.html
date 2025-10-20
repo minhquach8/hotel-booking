@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Aurora Cove Hotel — Redirecting…</title>
+        <meta name="robots" content="noindex" />
+        <meta http-equiv="refresh" content="0; url=frontend/" />
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                display: grid;
+                place-items: center;
+                font-family: system-ui, Segoe UI, Inter, Arial;
+            }
+            .card {
+                max-width: 560px;
+                padding: 1rem 1.25rem;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+            }
+            .muted {
+                color: #64748b;
+            }
+            a {
+                color: #0ea5e9;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h1>Redirecting to the site…</h1>
+            <p class="muted">
+                If you are not redirected automatically,
+                <a id="link" href="frontend/">click here</a>.
+            </p>
+        </div>
+
+        <script>
+            // Robust redirect for GitHub Pages (British English comments).
+            (function () {
+                // Example: https://minhquach8.github.io/hotel-booking/
+                // Compute base path '/hotel-booking/' from current URL.
+                var base = location.pathname.replace(/\/[^/]*$/, "/");
+                // Go to '/hotel-booking/frontend/' (or '.../frontend/index.html')
+                var target = base + "frontend/";
+                document.getElementById("link").setAttribute("href", target);
+                if (document.visibilityState !== "hidden")
+                    location.replace(target);
+            })();
+        </script>
+    </body>
+</html>
