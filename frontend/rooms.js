@@ -1,4 +1,4 @@
-// Aurora Cove Hotel — dynamic rooms rendering
+// Aurora Cove Hotel — dynamic rooms rendering (image path fix)
 
 (function () {
     const container = document.getElementById("rooms");
@@ -7,20 +7,34 @@
     const API_BASE =
         typeof window !== "undefined" && window.API_BASE ? window.API_BASE : "";
 
-    // Basic currency formatter for NZD
+    // Base to your /images folder on the current page (works on GitHub Pages under /hotel-booking/frontend/)
+    const IMAGES_BASE = new URL("images/", window.location.href).toString();
+
+    // Format NZD prices
     const nzd = new Intl.NumberFormat("en-NZ", {
         style: "currency",
         currency: "NZD",
         maximumFractionDigits: 0,
     });
 
-    // Lightweight skeleton while loading
     function showSkeleton() {
         container.innerHTML = `
             <article class="room-card" aria-hidden="true"><div class="room-card__body"><h2>Loading…</h2><p>Please wait while we fetch rooms.</p></div></article>
             <article class="room-card" aria-hidden="true"><div class="room-card__body"><h2>Loading…</h2><p>Please wait while we fetch rooms.</p></div></article>
             <article class="room-card" aria-hidden="true"><div class="room-card__body"><h2>Loading…</h2><p>Please wait while we fetch rooms.</p></div></article>
             `;
+    }
+
+    // Resolve image path from DB to a valid URL on GitHub Pages
+    function resolveImagePath(image) {
+        if (!image) return new URL("room-standard.jpg", IMAGES_BASE).toString();
+        // If absolute URL (http/https), use as is
+        if (/^https?:\/\//i.test(image)) return image;
+        // Normalise: strip leading slash and optional 'images/' prefix
+        const filename = String(image)
+            .replace(/^\/?images\//i, "")
+            .replace(/^\//, "");
+        return new URL(filename, IMAGES_BASE).toString();
     }
 
     function renderRooms(rooms) {
@@ -32,7 +46,7 @@
         const html = rooms
             .map((room) => {
                 const price = nzd.format(Number(room.price_nzd || 0));
-                const img = room.image || "/images/room-standard.jpg";
+                const img = resolveImagePath(room.image);
                 const desc =
                     room.description ||
                     "A comfortable room with thoughtful amenities.";
