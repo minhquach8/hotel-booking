@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Aurora Cove Hotel | Admin Bookings</title>
+        <link rel="stylesheet" href="styles.css" />
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+            }
+            th,
+            td {
+                padding: 0.6rem;
+                border-bottom: 1px solid #1f2937;
+                text-align: left;
+            }
+            th {
+                background: #111827;
+                color: #e5eef9;
+            }
+            td {
+                color: #a8b3cf;
+            }
+            caption {
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="container content">
+            <h1>Booking Records</h1>
+            <p>Latest 100 bookings from the database.</p>
+            <div id="bookingTable"></div>
+        </main>
+        <script defer src="config.js"></script>
+        <script defer src="admin.js"></script>
+    </body>
+</html>

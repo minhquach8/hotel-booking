@@ -81,6 +81,24 @@ app.post("/api/booking", async (_req, res) => {
     }
 });
 
+// Get all bookings (basic admin view)
+app.get("/api/bookings", async (_req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT id, full_name, email, room_slug, checkin, checkout, created_at
+       FROM bookings
+       ORDER BY created_at DESC
+       LIMIT 100`
+        );
+        res.status(200).json({ count: rows.length, bookings: rows });
+    } catch (err) {
+        res.status(500).json({
+            error: "DB_QUERY_FAILED",
+            message: err.message,
+        });
+    }
+});
+
 // Optional root message so visiting the base URL is clear
 app.get("/", (_req, res) => {
     res.type("text").send(
