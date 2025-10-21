@@ -34,6 +34,43 @@
         <main class="container content">
             <h1>Booking Records</h1>
             <p>Latest 100 bookings from the database.</p>
+            <div
+                class="filters"
+                style="
+                    margin-top: 1rem;
+                    display: flex;
+                    gap: 1rem;
+                    flex-wrap: wrap;
+                "
+            >
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search name or e-mail"
+                    style="
+                        padding: 0.5rem;
+                        border-radius: 8px;
+                        border: 1px solid #1f2937;
+                        flex: 1;
+                        min-width: 200px;
+                    "
+                />
+                <select
+                    id="roomFilter"
+                    style="
+                        padding: 0.5rem;
+                        border-radius: 8px;
+                        border: 1px solid #1f2937;
+                    "
+                >
+                    <option value="">All rooms</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="executive">Executive</option>
+                    <option value="standard">Standard</option>
+                </select>
+                <button id="exportBtn" class="btn btn--sm">Export CSV</button>
+            </div>
+
             <div id="bookingTable"></div>
         </main>
         <script defer src="config.js"></script>
