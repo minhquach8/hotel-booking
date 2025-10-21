@@ -85,10 +85,10 @@ app.post("/api/booking", async (_req, res) => {
 app.get("/api/bookings", async (_req, res) => {
     try {
         const [rows] = await pool.query(
-            `SELECT id, full_name, email, room_slug, checkin, checkout, notes, created_at
-       FROM bookings
-       ORDER BY created_at DESC
-       LIMIT 100`
+                `SELECT id, full_name, email, room_slug, checkin, checkout, notes, created_at
+                FROM bookings
+                ORDER BY created_at DESC
+                LIMIT 100`
         );
         res.status(200).json({ count: rows.length, bookings: rows });
     } catch (err) {

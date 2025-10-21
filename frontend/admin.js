@@ -21,8 +21,7 @@
 
     function renderTable(rows) {
         if (rows.length === 0) {
-            container.innerHTML =
-                "<p style='color:#a8b3cf'>No bookings yet.</p>";
+            container.innerHTML = "<p style='color:#a8b3cf'>No bookings yet.</p>";
             return;
         }
 
@@ -30,7 +29,7 @@
         table.innerHTML = `
             <caption>Recent Bookings (${rows.length})</caption>
             <thead>
-                <tr>
+            <tr>
                 <th>ID</th>
                 <th>Guest</th>
                 <th>E-mail</th>
@@ -39,27 +38,27 @@
                 <th>Check-out</th>
                 <th>Notes</th>
                 <th>Created</th>
-                </tr>
+            </tr>
             </thead>
             <tbody>
-                ${rows
-                    .map(
-                        (b) => `<tr>
+            ${rows
+                .map(
+                b => `<tr>
                     <td>${b.id}</td>
                     <td>${b.full_name}</td>
                     <td>${b.email}</td>
                     <td>${b.room_slug}</td>
                     <td>${b.checkin}</td>
                     <td>${b.checkout}</td>
-                    <td>${b.notes ? b.notes : ""}</td>
+                    <td>${b.notes ? b.notes : "<span style='color:#64748b'>–</span>"}</td>
                     <td>${new Date(b.created_at).toLocaleString("en-NZ")}</td>
-                    </tr>`
-                    )
-                    .join("")}
+                </tr>`
+                )
+                .join("")}
             </tbody>`;
         container.innerHTML = "";
         container.appendChild(table);
-    }
+        }
 
     loadBookings();
 })();
