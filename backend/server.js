@@ -85,7 +85,7 @@ app.post("/api/booking", async (_req, res) => {
 app.get("/api/bookings", async (_req, res) => {
     try {
         const [rows] = await pool.query(
-            `SELECT id, full_name, email, room_slug, checkin, checkout, created_at
+            `SELECT id, full_name, email, room_slug, checkin, checkout, notes, created_at
        FROM bookings
        ORDER BY created_at DESC
        LIMIT 100`
